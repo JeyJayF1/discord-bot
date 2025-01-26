@@ -1,9 +1,9 @@
 # Default ignored files
-/discord-bot/config.json
-/discord-bot/node_modules
-/discord-bot/.env
+config.json
+node_modules
+.env
 /shelf/
-/workspace.xml
+/.idea/workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
