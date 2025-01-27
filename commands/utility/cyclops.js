@@ -6,7 +6,7 @@ const cyclopsEmbed = new EmbedBuilder()
     .setURL('https://marvel-filme.fandom.com/de/wiki/Scott_Summers')
     .setDescription('Cyclops is a superhero appearing in American comic books published by Marvel Comics and is a founding member of the X-Men.')
     .setThumbnail('https://upload.wikimedia.org/wikipedia/en/e/e9/Cyclops_%28Scott_Summers_circa_2019%29.png')
-    .setImage('https://de.gizmodo.com/app/uploads/2024/03/8b04d828cf4511f16d2e6384ee763119-680x382.jpg')
+    .setImage('https://media1.tenor.com/m/tslbzvMV878AAAAd/xmen-97-cyclops.gif')
     .setTimestamp();
 
 
