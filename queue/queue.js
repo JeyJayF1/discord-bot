@@ -1,13 +1,13 @@
-import { ChatInputCommandInteraction, DiscordAPIError,
-    Message, TextChannel, ThreadAutoArchiveDuration, ThreadChannel } from "discord.js";
+const { ChatInputCommandInteraction, DiscordAPIError,
+    Message, TextChannel, ThreadAutoArchiveDuration, ThreadChannel } = require('discord.js');
 
 const wait = require('node:timers/promises').setTimeout;
 
-class Queue{
+class Queue {
 
     constructor() {
         this.queue = {};
-        this.interval = NodeJS.Timeout | undefined;
+        this.interval = undefined;
         this.CONCURRENT_QUEUE_SIZE = 3;
         this.LLM_MODEL = "deepseek-r1:7b"
     }
@@ -88,7 +88,8 @@ class Queue{
                 console.log(`Processing task with interaction id ${interactionId}`);
 
                 this.queue[interactionId].status.processing = true;
-                this.processTask(interaction, channel);
+
+                await this.processTask(interaction, channel);
                 currentlyBeingProcessedCount++;
             }else if (!processing && currentlyBeingProcessedCount > this.CONCURRENT_QUEUE_SIZE){
                 await wait(3_000);
@@ -104,7 +105,7 @@ class Queue{
         const userId = interaction.user.id;
         const userName = interaction.user.displayName;
 
-        console.log(`User sent message ${userId} with prompt: ${prompt}`);
+        console.log(`User ${userName} sent message with prompt: ${prompt}`);
 
         const newThread = await channel.threads.create({
             name: `[${userName}] - Prompt: ${prompt ?? "Prompt"}`,
@@ -140,6 +141,7 @@ class Queue{
             let messages = [];
 
             const throttleResponse = async () => {
+
                 if(messages.length === 0 || messages.length !== responseChunks.length){
                     const message = await newThread.send(responseChunks[responseChunks.length - 1]);
                     messages.push(message);
@@ -170,19 +172,19 @@ class Queue{
                                 return;
                             }
 
-                            const chuck = JSON.parse(decoder.decode(value)).response;
+                            const chunk = JSON.parse(decoder.decode(value)).response;
 
                             if(responseChunks.length === 0){
                                 responseChunks.push(result);
                             }
 
-                            if(result.length + chuck.length > 1800){
+                            if(result.length + chunk.length > 1800){
                                 responseChunks.push(chunk);
                                 result = "";
                             }
                             else{
                                 responseChunks[responseChunks.length -1] = responseChunks[responseChunks.length - 1].concat(chunk);
-                                result += chuck;
+                                result += chunk;
                             }
 
                             controller.enqueue(value);
@@ -201,4 +203,4 @@ class Queue{
     }
 }
 
-export default Queue;
+module.exports = Queue;

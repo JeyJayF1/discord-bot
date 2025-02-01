@@ -1,10 +1,9 @@
 const { SlashCommandBuilder, ChatInputCommandInteraction, MessageFlags } = require('discord.js');
-import Queue from "../../queue/queue";
+const Queue = require('../../queue/queue.js');
 
 const queue = new Queue();
 
 module.exports = {
-    cooldown: 30,
     category: 'prompts',
     data: new SlashCommandBuilder()
         .setName('prompt')
