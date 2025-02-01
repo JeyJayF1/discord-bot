@@ -2,11 +2,15 @@
   "name": "discord-bot",
   "version": "1.0.0",
   "license": "ISC",
-  "author": "",
+  "author": {
+    "name": "Jason F.",
+    "url" : "https://github.com/JeyJayF1"
+  },
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "description": "",
