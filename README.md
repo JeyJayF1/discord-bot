@@ -21,7 +21,7 @@ The bot also supports connection to a locally hosted LLM and allows the users to
 - Group your Commands in the commands directory for easy management
 - Sample Commands that can be the basis for all other Slashcommands (e.g `ping.js`)
 
-#### • Command Handler:
+#### • Event Handler:
 - Group your events in the events directory for easy management
 
 #### • Deploy-Commands:
@@ -52,10 +52,10 @@ npm start
 ```
 
 ### Planned Features:
-- Visualizations of User statistic (e.g graphs, charts, ...)
-- Leveling system for severs and bot
-- Full user managment tool-kit (e.g banning/kicking)
-- Trivia/Quiz functionality
+- [ ] Visualizations of User statistic (e.g graphs, charts, ...)
+- [ ] Leveling system for severs and bot
+- [ ] Full user managment tool-kit (e.g banning/kicking)
+- [ ] Trivia/Quiz functionality
 
 ### Contributions
 Contributions, bug-fixes and new feature ideas are always welcomed!
